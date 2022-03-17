@@ -1,0 +1,53 @@
+{
+  "name": "Robot_Follower",
+  "type": "dynamic",
+  "description": "A robot follower with a (static) gripper",
+  "shape": [
+    { "x": -10, "y": 10 },
+    { "x": 10, "y": 10 },
+    { "x": 10, "y": 2 },
+    { "x": 12, "y": 2 },
+    { "x": 12, "y": 6 },
+    { "x": 16, "y": 6 },
+    { "x": 16, "y": 4 },
+    { "x": 14, "y": 4 },
+    { "x": 14, "y": -4 },
+    { "x": 16, "y": -4 },
+    { "x": 16, "y": -6 },
+    { "x": 12, "y": -6 },
+    { "x": 12, "y": -2 },
+    { "x": 10, "y": -2 },
+    { "x": 10, "y": -10 },
+    { "x": -10, "y": -10 },
+    { "x": -9, "y": 0 }
+  ],
+  "friction": {
+    "collision": 5,
+    "linear": 40,
+    "rotational": 600
+  },
+  "sensors": [
+    {
+      "type": "range",
+      "location": { "x": 10, "y": -10 },
+      "direction": -0.05
+    }, 
+    {
+      "type": "range",
+      "location": { "x": 10, "y": -2.5 },
+      "direction": -0.025
+    }, 
+    {
+      "type": "range",
+      "location": { "x": 10, "y": 2.5 },
+      "direction": 0.025
+    }, 
+    {
+      "type": "range",
+      "location": { "x": 10, "y": 10 },
+      "direction": 0.05
+    }
+  ],
+  "mass": 1,
+  "controller": "lib/robot_follower.so"
+}
