@@ -17,6 +17,8 @@ The following 4 subj-projects are explained in order:
 IMPORTANT: This project uses ENVIRO v1.6 . Other versions may not be compatible.
 
 # Installation
+Start a command line terminal.
+
 Clone the project to a directory of your choice. Make sure the directory path has no special characters (!@#$%^&..) or spaces. 
 ```bash
 git clone https://github.com/misaellopezg/520FinalProject.git
@@ -44,15 +46,42 @@ cd RobotFlock
 ```
 NOTE: RobotTrain and BetterRobotTrain are considered to be one sub-project per description, but are launched individually. 
 
-After navigating to a sub-project start the project with the enviro command: 
+After navigating to a sub-project, use the "make clean" command to remove any accidental executables: 
+```bash
+make clean
+```
+After cleaning, use the "make" command to compile sub-project: 
+```bash
+make
+```
+Start the project with the enviro command: 
 ```bash
 enviro
 ```
 To stop the project, press Ctrl+c
 
+## LoopingLeader
+To add more creative paths for the robot to follow, you can place a static csv file under the /paths folder. The more X - Y coordinates for the robot, the better, as the robot looks ahead 3 coordinates ahead. 
+
+## Robot Follower
 Sub-project RobotFollower is the only project that requires user input. When starting a project, a moving target is spawned. To spawn a robot that follows the target, press the "Spawn Follower" button on the top-right side. To eliminate a robot follower, click on the desired robot. 
 
+## Robot Train and Better Robot Train
+Robot Train exhibits static behaviour with 3 robots following a leader. 
+
+Better Robot Train exhibits dynamic follower spawning behind the leader. To extend the robot train, modify the variable *const int flock_heigth* to a value greater than 0.
+
+## Robot Flock
+Robot Flock exhibits static behavior, with the leader spawning 3 follwer robots behind it. The leader is able to position the followers relative to it's X-Y-Theta position. The robot followers are able to oscillate on their own following the leader robot as a reference. This is done through sine and cosine calculations. The follower robots pass sensor information to the leader. The leader is then able to set the flock's front, left, right, and back sensor readings to detect objects around it.  
+
 # Challenges
+### ENVIRO Functionality
+When trying to create an invisible agent or non-interactive agent, the project would compile but would throw an segmentation fault error. I switched from the alpha version to version 1.2, and the issue persisted. At one point, I did get it to work, but one I remade the files the issue returned. I swtiched to version 1.6, and the issue persisted. 
+
+Workaround: I spawned a static agent far away from the robots that are actually running in the arena. The static agent was mainly used for train coordinator and did not have to be present in the arena. 
+### Spawning Unique Follower Robots
+
+......
 
 # Acknolwedgements
 ENVIRO: The multi-agent, multi-user, multi-everything simulator
@@ -67,6 +96,10 @@ Elma
 Enviro Docker Image
 - Created by: Eric Klavins
 - https://hub.docker.com/r/klavins/enviro
+
+Course Reference Material
+- Created by: Tamara Bonaci
+- https://github.com/tbonaciUW/EEP_520_Winter2022
 
 README has an overview of what the goal of the project is                                                                                                   |
 | 10     | README has a description of key challenges and how they were addressed                                                                                      |
