@@ -25,7 +25,7 @@ git clone https://github.com/misaellopezg/520FinalProject.git
 ```
 
 Docker is required to run the project. Docker can be found and downloaded here: https://www.docker.com/get-started/
-Once Docker is installed, run the following command to pull image (if never pulled) and start the docker container with Enviro. 
+Once Docker is installed, run the following command to pull image (if never pulled) and start the docker container with Enviro in the cloned directory above. 
 ```bash
 docker run -p80:80 -p8765:8765 -v $PWD:/source -it klavins/enviro:v1.6 bash
 ```
