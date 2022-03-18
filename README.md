@@ -100,6 +100,9 @@ Workaround: I spawned a static agent far away from the robots that are actually 
 ### Understanding Sensor Positioning and Data Retreival
 After editing the .json file, I kept positioning the sensors wrong. I also kept retreiving the sensors in the wrong order because I would place them wrong. 
 Workaround: I spawned a robot in the environment offset from the origin to figure out which sensor was which. I also played around with the .config file until I orderd the sensors in the correct way. 
+### Getting the Robot to Target another Robot
+It took me a while to understand how to use the sensors to follow a target. 
+Workaround: I was able to use the  sensor_reflection_type() method to find the target, as well as use aditional sensors to check to see which direction the target was moving.
 ### Spawning Unique Follower Robots
 This proved to be a challenge because of function inexperience. 
 Workaround: I did not know I was supposed to create the .so file for the target agent to be spawned. After reading the ENVIRO documentation, cleaninig and remaking the project, this issue went away.
@@ -109,6 +112,12 @@ Workaround: I used each follower's agent ID to create specific channels. For the
 ### Retreiving Sensor Information from Flock
 With the Robot Flock project, I was trying to spawn dynamic followers behind the leader and retreive their sensor information. I tried to use a for loop with the watch() method to use a vector to store sensor information from the followers. However, I was not able to dynamically do this. 
 Workaround: I made the example static, and created 3 static channels to retreive follower sensor information. 
+### Spawning Followers with respect to Leader
+This took me a while, as it required brushing up on using trigonometry rules to figure out how to position the followers. 
+Workaround: Creating functions that represent equations for offsetting followers using trigonometry. 
+### Other
+Starting a new full-time job during the middle of the class certaintly did not help! 
+Workaround: Sleep more and lots of coffee! 
 
 # Acknolwedgements
 ENVIRO: The multi-agent, multi-user, multi-everything simulator
