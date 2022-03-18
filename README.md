@@ -58,6 +58,12 @@ Start the project with the enviro command:
 ```bash
 enviro
 ```
+To see the environment, open your web browswer (preferably Google Chrome) and go to localhost: 
+```bash
+https://localhost/
+```
+This should show the ENVIRO environment. 
+
 To stop the project, press Ctrl+c
 
 ## LoopingLeader
