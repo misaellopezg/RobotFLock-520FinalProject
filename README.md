@@ -64,18 +64,31 @@ https://localhost/
 ```
 This should show the ENVIRO environment. 
 
-To stop the project, press Ctrl+c
+To stop the project, press Ctrl+c . 
 
-## LoopingLeader
-To add more creative paths for the robot to follow, you can place a static csv file under the /paths folder. The more X - Y coordinates for the robot, the better, as the robot looks ahead 3 coordinates ahead. 
+Most projects should be non-interactive and showcase robot flock progresssion. 
+
+## Looping Leader
+To add more creative paths for the robot to follow, you can place a static csv file under the /paths folder and edit the init() function under Leader.cc file to specify the static csv file path to read from: 
+```bash
+void MyRobotController::init()
+{
+    //Get robot path from paths/ folder in project and store in vector 
+    robot_path = get_file_robot_path("paths/circular_path.csv"); 
+    ..
+    ..
+    ..
+}
+```
+The more X - Y coordinates for the robot, the better, as the robot looks ahead 3 coordinates ahead. 
 
 ## Robot Follower
-Sub-project RobotFollower is the only project that requires user input. When starting a project, a moving target is spawned. To spawn a robot that follows the target, press the "Spawn Follower" button on the top-right side. To eliminate a robot follower, click on the desired robot. 
+Sub-project RobotFollower is the only project that requires user input. When starting a project, a moving target is spawned. To spawn a robot that follows the target, press the "Spawn Follower" button on the top-right side. To eliminate a robot follower, click on the desired robot. Just like in looping leader, other paths can be placed for LoopingLeader.cc . 
 
 ## Robot Train and Better Robot Train
 Robot Train exhibits static behaviour with 3 robots following a leader. 
 
-Better Robot Train exhibits dynamic follower spawning behind the leader. To extend the robot train, modify the variable *const int flock_heigth* to a value greater than 0.
+Better Robot Train exhibits dynamic follower spawning behind the leader. To extend the robot train, modify the variable *const int flock_heigth* to a value greater than 0. Similar to looping leader, other paths can be placed under RobotTarget.cc . 
 
 ## Robot Flock
 Robot Flock exhibits static behavior, with the leader spawning 3 follwer robots behind it. The leader is able to position the followers relative to it's X-Y-Theta position. The robot followers are able to oscillate on their own following the leader robot as a reference. This is done through sine and cosine calculations. The follower robots pass sensor information to the leader. The leader is then able to set the flock's front, left, right, and back sensor readings to detect objects around it.  
@@ -83,11 +96,19 @@ Robot Flock exhibits static behavior, with the leader spawning 3 follwer robots 
 # Challenges
 ### ENVIRO Functionality
 When trying to create an invisible agent or non-interactive agent, the project would compile but would throw an segmentation fault error. I switched from the alpha version to version 1.2, and the issue persisted. At one point, I did get it to work, but one I remade the files the issue returned. I swtiched to version 1.6, and the issue persisted. 
-
 Workaround: I spawned a static agent far away from the robots that are actually running in the arena. The static agent was mainly used for train coordinator and did not have to be present in the arena. 
+### Understanding Sensor Positioning and Data Retreival
+After editing the .json file, I kept positioning the sensors wrong. I also kept retreiving the sensors in the wrong order because I would place them wrong. 
+Workaround: I spawned a robot in the environment offset from the origin to figure out which sensor was which. I also played around with the .config file until I orderd the sensors in the correct way. 
 ### Spawning Unique Follower Robots
-
-......
+This proved to be a challenge because of function inexperience. 
+Workaround: I did not know I was supposed to create the .so file for the target agent to be spawned. After reading the ENVIRO documentation, cleaninig and remaking the project, this issue went away.
+### Creating Unique Channels for Followers
+To have the robot leader or robot coordinator relay information to followers, I had to come up with a way to be able to communicate specific information to each follower. 
+Workaround: I used each follower's agent ID to create specific channels. For the leader and/or coordinator, I used the Agent& add_agent() function with a for loop to store the IDs in a vector. This vector was used to keep information from each sequential follower spawned as well as communicate information back to the follower. 
+### Retreiving Sensor Information from Flock
+With the Robot Flock project, I was trying to spawn dynamic followers behind the leader and retreive their sensor information. I tried to use a for loop with the watch() method to use a vector to store sensor information from the followers. However, I was not able to dynamically do this. 
+Workaround: I made the example static, and created 3 static channels to retreive follower sensor information. 
 
 # Acknolwedgements
 ENVIRO: The multi-agent, multi-user, multi-everything simulator
@@ -105,9 +126,4 @@ Enviro Docker Image
 
 Course Reference Material
 - Created by: Tamara Bonaci
-- https://github.com/tbonaciUW/EEP_520_Winter2022
-
-README has an overview of what the goal of the project is                                                                                                   |
-| 10     | README has a description of key challenges and how they were addressed                                                                                      |
-| 10     | README describes how to install and run the code (assuming the user has docker installed)                                                                   |
-| 10     | README describes how to run and/or use the project                                                                                                            
+- https://github.com/tbonaciUW/EEP_520_Winter2022                                                                                                       
