@@ -128,6 +128,7 @@ ENVIRO: The multi-agent, multi-user, multi-everything simulator
 Elma
 - Created by: Klavins Lab Software
 - https://github.com/klavinslab/elma_project
+- http://klavinslab.org/elma/functions_func.html
 
 Enviro Docker Image
 - Created by: Eric Klavins
@@ -136,3 +137,6 @@ Enviro Docker Image
 Course Reference Material
 - Created by: Tamara Bonaci
 - https://github.com/tbonaciUW/EEP_520_Winter2022                                                                                                       
+
+cplusplus.com
+- https://www.cplusplus.com/
